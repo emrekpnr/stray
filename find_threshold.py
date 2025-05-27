@@ -43,4 +43,3 @@ def find_threshold(outlier_score, alpha=0.01, out_tail="max", p=0.5, tn=50):
     # Find the indices of the outliers based on the computed threshold
     outlier_indices = np.where(outlier_score > bound)[0]
     return outlier_indices.tolist()
-

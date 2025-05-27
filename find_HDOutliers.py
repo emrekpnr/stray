@@ -31,7 +31,7 @@ def use_KNN(data: np.ndarray, alpha: float, k: int, knn_search_type: str, p: flo
     return {"outliers": outlier_indices, "out_scores": max_gap_distances}
 
 
-def find_HDoutliers(data: Union[np.ndarray], alpha: float = 0.01, k: int = 10, knn_search_type: str = "brute",
+def find_HDOutliers(data: Union[np.ndarray], alpha: float = 0.01, k: int = 10, knn_search_type: str = "brute",
                     normalize: str = "unitize", p: float = 0.5, tn: int = 50):
     # Validate input parameters
     data = np.asarray(data)
@@ -58,5 +58,3 @@ def find_HDoutliers(data: Union[np.ndarray], alpha: float = 0.01, k: int = 10, k
     types[outliers] = "outlier"
 
     return {"outliers": outliers, "out_scores": out_items["out_scores"], "type": types}
-
-

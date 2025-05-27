@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from find_HDOutliers import find_HDoutliers, use_KNN
+from find_HDOutliers import find_HDOutliers, use_KNN
 
 
 class TestFindHDOutliers(unittest.TestCase):
@@ -28,7 +28,7 @@ class TestFindHDOutliers(unittest.TestCase):
     def test_find_hd_outliers_basic(self):
         # Test for basic outlier detection
         data = np.array([[1, 2], [2, 3], [3, 4], [10, 10]])  # 10, 10 should be an outlier
-        result = find_HDoutliers(data, alpha=0.01, k=2, knn_search_type="brute", normalize="unitize", p=0.5, tn=50)
+        result = find_HDOutliers(data, alpha=0.01, k=2, knn_search_type="brute", normalize="unitize", p=0.5, tn=50)
         self.assertIn(3, result["outliers"])  # Index 3 should be detected as an outlier
         self.assertEqual(len(result["out_scores"]), len(data))  # Check that scores correspond to the data size
 
@@ -36,12 +36,12 @@ class TestFindHDOutliers(unittest.TestCase):
         # Test for handling missing values (NaN or inf)
         data = np.array([[1, 2], [np.nan, 3], [3, 4], [10, np.inf]])  # NaN and inf values
         with self.assertRaises(ValueError):
-            find_HDoutliers(data, alpha=0.01, k=2, knn_search_type="brute", normalize="unitize", p=0.5, tn=50)
+            find_HDOutliers(data, alpha=0.01, k=2, knn_search_type="brute", normalize="unitize", p=0.5, tn=50)
 
     def test_find_hdoutliers_identical_data(self):
         # Test for edge case with identical data (no outliers)
         data = np.array([[5, 5], [5, 5], [5, 5], [5, 5]])
-        result = find_HDoutliers(data, alpha=0.01, k=2, knn_search_type="brute", normalize="unitize", p=0.5, tn=50)
+        result = find_HDOutliers(data, alpha=0.01, k=2, knn_search_type="brute", normalize="unitize", p=0.5, tn=50)
         self.assertEqual(len(result["outliers"]), 0)  # No outliers should be detected
 
 
